@@ -12,7 +12,7 @@ class PauseAnimation:
         self.p, = self.ax.plot(self.graph[0])
         
         self.animation = animation.FuncAnimation(
-            self.fig, self.update, frames=len(self.graph), interval=len(self.graph)/time, blit=True)
+            self.fig, self.update, frames=len(self.graph), interval=time, blit=True)
         self.paused = True
 
         self.fig.canvas.mpl_connect('button_press_event', self.toggle_pause)
