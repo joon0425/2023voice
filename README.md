@@ -38,3 +38,11 @@
 
 #### _추가적으로 구현할 수 있는 것_
 * _Noise Suppression_
+
+
+
+
+
+긁어온 것들(감사합니다)
+https://github.com/marl/crepe/tree/master
+
