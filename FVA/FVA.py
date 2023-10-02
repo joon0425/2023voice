@@ -12,9 +12,9 @@ from .detect import *
 class SingleSoundAnalyser:
 
   
-  def __init__(self, FILE_PATH, duration = None, sr = 44100):
+  def __init__(self, FILE_PATH, duration = None, sr = None):
 
-    if sr is None: sr = 44100
+    if sr is None: sr = librosa.load(FILE_PATH)[1]
 
     waveFile = wave.open(FILE_PATH, 'r')
     self.samplewidth = waveFile.getsampwidth()

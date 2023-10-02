@@ -1,6 +1,6 @@
 import numpy as np
 
-def formant_detect(input0, df0, f_min = 250):
+def formant_detect(input0, df0, f_min = 0):
 
   f_result = []
   i_result = []
