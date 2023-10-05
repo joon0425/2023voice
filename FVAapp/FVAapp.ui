@@ -19,15 +19,15 @@
      <rect>
       <x>50</x>
       <y>50</y>
-      <width>800</width>
-      <height>200</height>
+      <width>691</width>
+      <height>161</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="rec">
      <attribute name="title">
@@ -123,6 +123,43 @@
       </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QLabel" name="log">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>20</y>
+      <width>801</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>log</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>790</x>
+      <y>70</y>
+      <width>1081</width>
+      <height>281</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="lpclayout"/>
+   </widget>
+   <widget class="QPushButton" name="viewResult">
+    <property name="geometry">
+     <rect>
+      <x>315</x>
+      <y>220</y>
+      <width>150</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>결과 보기</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

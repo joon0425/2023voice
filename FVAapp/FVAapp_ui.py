@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'FVAapp.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.5.1
+## Created by: Qt User Interface Compiler version 6.5.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -17,7 +17,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QApplication, QLabel, QMainWindow, QMenuBar,
     QPushButton, QSizePolicy, QStatusBar, QTabWidget,
-    QWidget)
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName(u"centralwidget")
         self.tabWidget = QTabWidget(self.centralwidget)
         self.tabWidget.setObjectName(u"tabWidget")
-        self.tabWidget.setGeometry(QRect(50, 50, 800, 200))
+        self.tabWidget.setGeometry(QRect(50, 50, 691, 161))
         self.tabWidget.setStyleSheet(u"")
         self.rec = QWidget()
         self.rec.setObjectName(u"rec")
@@ -56,6 +56,18 @@ class Ui_MainWindow(object):
         self.filepos.setObjectName(u"filepos")
         self.filepos.setGeometry(QRect(30, 100, 741, 16))
         self.tabWidget.addTab(self.file, "")
+        self.log = QLabel(self.centralwidget)
+        self.log.setObjectName(u"log")
+        self.log.setGeometry(QRect(50, 20, 801, 20))
+        self.verticalLayoutWidget = QWidget(self.centralwidget)
+        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
+        self.verticalLayoutWidget.setGeometry(QRect(790, 70, 1081, 281))
+        self.lpclayout = QVBoxLayout(self.verticalLayoutWidget)
+        self.lpclayout.setObjectName(u"lpclayout")
+        self.lpclayout.setContentsMargins(0, 0, 0, 0)
+        self.viewResult = QPushButton(self.centralwidget)
+        self.viewResult.setObjectName(u"viewResult")
+        self.viewResult.setGeometry(QRect(315, 220, 150, 24))
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
@@ -67,7 +79,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -83,5 +95,7 @@ class Ui_MainWindow(object):
         self.selectFile.setText(QCoreApplication.translate("MainWindow", u"\ud30c\uc77c \uc120\ud0dd\ud558\uae30", None))
         self.filepos.setText(QCoreApplication.translate("MainWindow", u"\ud30c\uc77c \uacbd\ub85c", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.file), QCoreApplication.translate("MainWindow", u"\ud30c\uc77c", None))
+        self.log.setText(QCoreApplication.translate("MainWindow", u"log", None))
+        self.viewResult.setText(QCoreApplication.translate("MainWindow", u"\uacb0\uacfc \ubcf4\uae30", None))
     # retranslateUi
 
