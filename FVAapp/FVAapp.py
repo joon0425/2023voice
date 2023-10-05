@@ -9,9 +9,10 @@ from PyQt5.QtMultimedia import *
 import pathlib
 import FVA.record as rc
 
+
 cd = str(pathlib.Path(__file__).parent.absolute())
 print(cd)
-form_class = uic.loadUiType(cd+"/FVAapp.ui")[0]
+form_class = uic.loadUiType(cd+"\\FVAapp.ui")[0]
 
 #화면을 띄우는데 사용되는 Class 선언
 class WindowClass(QMainWindow, form_class):
@@ -29,13 +30,13 @@ class WindowClass(QMainWindow, form_class):
         self.stop.clicked.connect(self.f_stop)
         
         self.record.setIcon(QIcon(QPixmap(cd+'/icons/record.tif')))
-        self.record.setIconSize(QSize(58,58))
+        self.record.setIconSize(QSize(98,98))
         self.play.setIcon(QIcon(QPixmap(cd+'/icons/play.tif')))
-        self.play.setIconSize(QSize(58,58))
+        self.play.setIconSize(QSize(98,98))
         self.pause.setIcon(QIcon(QPixmap(cd+'/icons/pause.tif')))
-        self.pause.setIconSize(QSize(58,58))
+        self.pause.setIconSize(QSize(98,98))
         self.stop.setIcon(QIcon(QPixmap(cd+'/icons/stop.tif')))
-        self.stop.setIconSize(QSize(58,58))
+        self.stop.setIconSize(QSize(98,98))
         
         def handle_state_changed(state):
             if state==QMediaPlayer.PlayingState:
