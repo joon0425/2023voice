@@ -18,6 +18,14 @@ import random
 import pandas as pd
 from DB.DBmanager import *
 import matplotlib.patches as patches
+import matplotlib
+import matlab
+
+
+pitchcondition = 0 # 0: upper than pitch, 1: +- 70Hz
+
+matplotlib.rcParams['font.family'] ='Malgun Gothic'
+matplotlib.rcParams['axes.unicode_minus'] =False
 
 cd = str(pathlib.Path(__file__).parent.absolute())
 print(cd)
@@ -47,7 +55,7 @@ colors          =   ['red','green','orange','dodgerblue','deeppink','aqua','blue
 counts          =   np.zeros((8,nF1,nF2))
 userDict        =   {a[0]:a[1] for a in users.values.tolist()}
 
-NameFilter = ['정도일']
+NameFilter = None#['정도일']
 TimeFilter = None#['2023-09-27','2023-10-03']
 
 board = countSetup(namefilter=NameFilter,timefilter=TimeFilter)
@@ -65,7 +73,8 @@ def get_Findex(FM:FVAmanager):
     fp  =   FM.FR_pitch()
     dellist = []
     for i,x in enumerate(fm):
-        if x < fp + 70 and x > fp - 70: dellist.append(i)
+        if pitchcondition == 0 and x <= fp: dellist.append(i)
+        elif pitchcondition == 1 and x < fp + 70 and x > fp - 70: dellist.append(i)
     for i in dellist:
         del fm[i]
 
@@ -169,6 +178,24 @@ class WindowClass(QMainWindow, form_class):
         self.Lcanvas = FigureCanvas(self.Lfig)
         self.label_layout.addWidget(self.Lcanvas)
         
+        self.f1pixmap = QPixmap(cd+'\\F1axis.png')
+        self.F1.setPixmap(self.f1pixmap)
+        self.F1.setScaledContents(True)
+        self.F1.setGeometry(QRect(720,469,100,466))
+        
+        self.f2pixmap = QPixmap(cd+'\\F2axis.png')
+        self.F2.setPixmap(self.f2pixmap)
+        self.F2.setScaledContents(True)
+        self.F2.setGeometry(QRect(142,415,590,79))
+        
+        self.mvppixmap = QPixmap(cd+'\\MVPtitle.png')
+        self.MVPtitle.setPixmap(self.mvppixmap)
+        self.MVPtitle.setScaledContents(True)
+        self.MVPtitle.setGeometry(QRect(263,907,380,40))
+        
+        self.ViewLabel()
+        self.initMVP()
+        
     def ViewLpc(self):
         if self.lpcaxes is not None:
             self.lpcaxes.cla()
@@ -193,64 +220,86 @@ class WindowClass(QMainWindow, form_class):
         self.lpccanvas.draw()
         
         print(lpcspec)
-    def ViewMVPall(self):
-        if self.MAaxes is not None:
-            self.MAaxes.cla()
-            self.MAaxes.set_visible(False)
-        
-        self.MAaxes = self.MAfig.subplots(nF1,nF2+1)
-        
-        res, Findex, fp, fm = get_Findex(self.FM)
-        self.fmfp.setText(f'Pitch : {round(fp,1)}Hz / Formants : {", ".join(str(e)+"Hz" for e in fm[:4])}')
-        sorted(Findex)
-
+    def ViewLabel(self):
+        if self.Laxes is not None:
+            self.Laxes.cla()
+            self.Laxes.set_visible(False)
+            
+        self.Laxes = self.Lfig.subplots(1,1)
         axes = []
         labels = []
         for i,vowel in enumerate(vowels.keys()):
-            print(vowel)
-            axes.append(self.MAaxes[0][0].scatter([],[],s=150,c=colors[i],marker='o',label='뭐노'))
+            self.Laxes.xaxis.set_visible(False)
+            self.Laxes.yaxis.set_visible(False)
+            self.Laxes.axis('off')
+            axes.append(self.Laxes.scatter([],[],s=150,c=colors[i],marker='o',label=vowel))
             labels.append(vowel)
-        plt.legend(axes,labels,loc='lower left', bbox_to_anchor=(-22.2,3),fontsize=20)
+            
+        self.Laxes.legend(axes,labels,fontsize=12,bbox_to_anchor=(1.1,0.8))
+        self.Lcanvas.draw()      
+    def initMVP(self,draw=True):
+        if self.MAaxes is not None:
+            for x in self.MAaxes.flatten():
+                x.cla()
+                x.set_visible(False)
+        
+        self.MAaxes = self.MAfig.subplots(nF1,nF2)
 
         for i in range(nF1):
-            for q in range(nF2+1):
-                self.MAaxes[i][nF2-q].set_aspect('equal', adjustable='box')
-                self.MAaxes[i][nF2-q].xaxis.set_visible(False)
-                self.MAaxes[i][nF2-q].yaxis.set_visible(False)
-                self.MAaxes[i][nF2-q].axis('off')
+            for q in range(nF2):
+                self.MAaxes[i][nF2-q-1].set_aspect('equal', adjustable='box')
+                self.MAaxes[i][nF2-q-1].xaxis.set_visible(False)
+                self.MAaxes[i][nF2-q-1].yaxis.set_visible(False)
+                self.MAaxes[i][nF2-q-1].axis('off')
                 if q<nF2:
-                    if board[i][q].sum()!=0 and i + nF2 - q < 15:
-                        self.MAaxes[i][nF2-q].pie(np.array(board[i][q]),colors=colors,radius=1.3)
-                        if i==Findex[0] and q==Findex[1]:
-                            self.MAaxes[i][nF2-q].add_patch(patches.Rectangle(
-                                (1.8, 1.0),                   # (x, y)
-                                0.4, 1.5,                     # width, height
-                                edgecolor = 'deeppink',
-                                facecolor = 'lightgray',
-                                fill=True,
-                            ))
-        self.MAcanvas.draw()
+                    #if board[i][q].sum()!=0 and i + nF2 - q - 1 < 15:
+                        self.MAaxes[i][nF2-q-1].pie(np.array(board[i][q]),colors=colors,radius=1.3)
+        if draw:self.MAcanvas.draw() 
+    def ViewMVP(self):
+        self.initMVP(draw=False)
         
-        
-        
-        
-    def ViweMVPone(self):
         if self.MOaxes is not None:
             self.MOaxes.cla()
             self.MOaxes.set_visible(False)
         
         self.MOaxes = self.MOfig.subplots(1,1)
         
+        res, Findex, fp, fm = get_Findex(self.FM)
+        self.FMFP.setPlainText(f'Pitch : {round(fp,1)}Hz\nFormants : {", ".join(str(round(e,1))+"Hz" for e in fm[:4])}')
+        sorted(Findex)
         
+        self.MAaxes[Findex[0]][nF2-Findex[1]-1].add_patch(patches.Rectangle(
+            (-1.25, -1.25),                   # (x, y)
+            2.5, 2.5,                     # width, height
+            edgecolor = 'deeppink',
+            facecolor = 'white',
+            fill=False,
+            linewidth=2.3,
+        ))
         
+        self.MAcanvas.draw()
         
+        self.MVPresult.clear()
+        self.MVPresult.append('인공지능이 분석한 결과,\n이 소리는\n')
+        for i,x in enumerate(res):
+            self.MVPresult.append(f'{x[1]} : {x[0]}%')
+        self.MVPresult.append('\n인 소리입니다.')
         
+        pairs = [[board[Findex[0]][Findex[1]][i],x,colors[i]] for i,x in enumerate(vowels.keys())]
+        rpairs = []
+        for x in pairs:
+            if x[0] > 0.:
+                rpairs.append(x)
+        
+        self.MOaxes.pie(np.array(rpairs).transpose((1,0))[0],colors=np.array(rpairs).transpose((1,0))[2],labels=np.array(rpairs).transpose((1,0))[1],autopct='%.1f%%',textprops={'fontsize': 22},radius=1.5)
+        
+        self.MOcanvas.draw()
     def f_ViewResult(self):
         self.log.setText("f_ViewResult() : ViewResult clicked")
         self.FM = FVAmanager(self.filename)
         self.ViewLpc()
-        self.ViewMVPall()
-    
+        self.ViewMVP()
+        self.ViewLabel()
     def f_record(self):
         self.log.setText("f_record() : record clicked")
         if self.isplaying or rc.recording:
@@ -294,7 +343,7 @@ class WindowClass(QMainWindow, form_class):
             rc.stop()
         if self.isplaying:
             self.player.stop()
-    def f_FileLoad(self):        
+    def f_FileLoad(self):
         fname=QFileDialog.getOpenFileName(self)
         
         if fname[0] and fname[0][-3:]=="wav":

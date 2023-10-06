@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1920</width>
-    <height>1080</height>
+    <width>2205</width>
+    <height>1172</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,8 +18,8 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>90</y>
-      <width>691</width>
+      <y>70</y>
+      <width>791</width>
       <height>161</height>
      </rect>
     </property>
@@ -27,7 +27,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="rec">
      <attribute name="title">
@@ -36,7 +36,7 @@
      <widget class="QPushButton" name="record">
       <property name="geometry">
        <rect>
-        <x>50</x>
+        <x>110</x>
         <y>30</y>
         <width>100</width>
         <height>100</height>
@@ -49,7 +49,7 @@
      <widget class="QPushButton" name="play">
       <property name="geometry">
        <rect>
-        <x>210</x>
+        <x>270</x>
         <y>30</y>
         <width>100</width>
         <height>100</height>
@@ -62,7 +62,7 @@
      <widget class="QPushButton" name="pause">
       <property name="geometry">
        <rect>
-        <x>370</x>
+        <x>430</x>
         <y>30</y>
         <width>100</width>
         <height>100</height>
@@ -75,7 +75,7 @@
      <widget class="QPushButton" name="stop">
       <property name="geometry">
        <rect>
-        <x>530</x>
+        <x>590</x>
         <y>30</y>
         <width>100</width>
         <height>100</height>
@@ -128,7 +128,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>20</y>
+      <y>30</y>
       <width>801</width>
       <height>20</height>
      </rect>
@@ -140,10 +140,10 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>790</x>
+      <x>950</x>
       <y>70</y>
-      <width>721</width>
-      <height>281</height>
+      <width>921</width>
+      <height>301</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="lpclayout"/>
@@ -151,8 +151,8 @@
    <widget class="QPushButton" name="viewResult">
     <property name="geometry">
      <rect>
-      <x>315</x>
-      <y>280</y>
+      <x>380</x>
+      <y>250</y>
       <width>150</width>
       <height>24</height>
      </rect>
@@ -164,10 +164,10 @@
    <widget class="QWidget" name="verticalLayoutWidget_2">
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>370</y>
+      <x>80</x>
+      <y>430</y>
       <width>721</width>
-      <height>661</height>
+      <height>531</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="MVPall_layout"/>
@@ -176,9 +176,9 @@
     <property name="geometry">
      <rect>
       <x>950</x>
-      <y>370</y>
-      <width>721</width>
-      <height>661</height>
+      <y>400</y>
+      <width>621</width>
+      <height>561</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="MVPone_layout"/>
@@ -187,33 +187,153 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>370</y>
-      <width>161</width>
-      <height>661</height>
+      <y>430</y>
+      <width>111</width>
+      <height>531</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="label_layout"/>
    </widget>
-   <widget class="QLabel" name="fmfp">
+   <widget class="QTextBrowser" name="FMFP">
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>60</y>
-      <width>691</width>
+      <y>300</y>
+      <width>791</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+hr { height: 1px; border-width: 0; }
+li.unchecked::marker { content: &quot;\2610&quot;; }
+li.checked::marker { content: &quot;\2612&quot;; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'맑은 고딕'; font-size:16pt; font-weight:700; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:400;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F2">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>410</y>
+      <width>701</width>
+      <height>81</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F2</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="F1">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>430</y>
+      <width>101</width>
+      <height>471</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>F1</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="MVPtitle">
+    <property name="geometry">
+     <rect>
+      <x>410</x>
+      <y>940</y>
+      <width>121</width>
       <height>16</height>
      </rect>
     </property>
     <property name="text">
-     <string>(Pitch, Formants)</string>
+     <string>MVPtitle</string>
     </property>
    </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>399</y>
+      <width>791</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QFrame" name="frame_2">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>430</y>
+      <width>41</width>
+      <height>531</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color:rgb(255, 255, 255)</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+   </widget>
+   <widget class="QTextBrowser" name="MVPresult">
+    <property name="geometry">
+     <rect>
+      <x>1570</x>
+      <y>400</y>
+      <width>300</width>
+      <height>560</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+   </widget>
+   <zorder>frame</zorder>
+   <zorder>frame_2</zorder>
+   <zorder>tabWidget</zorder>
+   <zorder>log</zorder>
+   <zorder>verticalLayoutWidget</zorder>
+   <zorder>viewResult</zorder>
+   <zorder>verticalLayoutWidget_2</zorder>
+   <zorder>verticalLayoutWidget_3</zorder>
+   <zorder>verticalLayoutWidget_4</zorder>
+   <zorder>FMFP</zorder>
+   <zorder>F2</zorder>
+   <zorder>F1</zorder>
+   <zorder>MVPtitle</zorder>
+   <zorder>MVPresult</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1920</width>
+     <width>2205</width>
      <height>22</height>
     </rect>
    </property>
