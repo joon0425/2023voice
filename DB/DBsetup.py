@@ -9,7 +9,7 @@ bias =""
 if nw[:-2]!="DB":
     bias = "DB/"
 
-cred = credentials.Certificate(bias+"firebaseKey.json")
+cred = credentials.Certificate("c:\\Users\\User\\Desktop\\firebaseKey.json")
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()

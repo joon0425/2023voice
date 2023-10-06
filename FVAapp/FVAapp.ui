@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>50</x>
-      <y>50</y>
+      <y>90</y>
       <width>691</width>
       <height>161</height>
      </rect>
@@ -27,7 +27,7 @@
      <string notr="true"/>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="rec">
      <attribute name="title">
@@ -142,7 +142,7 @@
      <rect>
       <x>790</x>
       <y>70</y>
-      <width>1081</width>
+      <width>721</width>
       <height>281</height>
      </rect>
     </property>
@@ -152,13 +152,59 @@
     <property name="geometry">
      <rect>
       <x>315</x>
-      <y>220</y>
+      <y>280</y>
       <width>150</width>
       <height>24</height>
      </rect>
     </property>
     <property name="text">
      <string>결과 보기</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>370</y>
+      <width>721</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="MVPall_layout"/>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>950</x>
+      <y>370</y>
+      <width>721</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="MVPone_layout"/>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_4">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>370</y>
+      <width>161</width>
+      <height>661</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="label_layout"/>
+   </widget>
+   <widget class="QLabel" name="fmfp">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>60</y>
+      <width>691</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>(Pitch, Formants)</string>
     </property>
    </widget>
   </widget>
