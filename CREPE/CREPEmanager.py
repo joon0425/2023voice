@@ -1,7 +1,7 @@
 import os,sys
 import numpy as np
 print(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from CREPE.CrepeMaster.crepe.cli import *
+import crepe
 
 def verify_f0(FILE):
     FILE = os.path.splitext(FILE)[0]
@@ -13,7 +13,7 @@ def verify_f0(FILE):
     return result
 
 def test_sweep(FILE):
-    process_file(FILE,step_size=100)
+    crepe.process_file(FILE,step_size=100)
     return verify_f0(FILE)
 
 def test_sweep_cli(FILE):
