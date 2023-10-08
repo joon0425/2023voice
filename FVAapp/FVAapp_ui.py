@@ -76,7 +76,7 @@ class Ui_MainWindow(object):
         self.MVPall_layout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayoutWidget_3 = QWidget(self.centralwidget)
         self.verticalLayoutWidget_3.setObjectName(u"verticalLayoutWidget_3")
-        self.verticalLayoutWidget_3.setGeometry(QRect(950, 400, 621, 561))
+        self.verticalLayoutWidget_3.setGeometry(QRect(950, 540, 921, 421))
         self.MVPone_layout = QVBoxLayout(self.verticalLayoutWidget_3)
         self.MVPone_layout.setObjectName(u"MVPone_layout")
         self.MVPone_layout.setContentsMargins(0, 0, 0, 0)
@@ -88,9 +88,10 @@ class Ui_MainWindow(object):
         self.label_layout.setContentsMargins(0, 0, 0, 0)
         self.FMFP = QTextBrowser(self.centralwidget)
         self.FMFP.setObjectName(u"FMFP")
-        self.FMFP.setGeometry(QRect(50, 300, 791, 71))
+        self.FMFP.setGeometry(QRect(50, 300, 791, 101))
         font = QFont()
-        font.setPointSize(16)
+        font.setFamilies([u"\ub098\ub214\uc2a4\ud018\uc5b4_ac ExtraBold"])
+        font.setPointSize(20)
         font.setBold(True)
         self.FMFP.setFont(font)
         self.F2 = QLabel(self.centralwidget)
@@ -116,7 +117,7 @@ class Ui_MainWindow(object):
         self.frame_2.setFrameShadow(QFrame.Raised)
         self.MVPresult = QTextBrowser(self.centralwidget)
         self.MVPresult.setObjectName(u"MVPresult")
-        self.MVPresult.setGeometry(QRect(1570, 400, 300, 560))
+        self.MVPresult.setGeometry(QRect(950, 380, 921, 161))
         self.MVPresult.setFont(font)
         MainWindow.setCentralWidget(self.centralwidget)
         self.frame.raise_()
@@ -167,8 +168,8 @@ class Ui_MainWindow(object):
 "hr { height: 1px; border-width: 0; }\n"
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'\ub9d1\uc740 \uace0\ub515'; font-size:16pt; font-weight:700; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:400;\"><br /></p></body></html>", None))
+"</style></head><body style=\" font-family:'\ub098\ub214\uc2a4\ud018\uc5b4_ac ExtraBold'; font-size:20pt; font-weight:700; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'\ub9d1\uc740 \uace0\ub515'; font-size:16pt; font-weight:400;\"><br /></p></body></html>", None))
         self.F2.setText(QCoreApplication.translate("MainWindow", u"F2", None))
         self.F1.setText(QCoreApplication.translate("MainWindow", u"F1", None))
         self.MVPtitle.setText(QCoreApplication.translate("MainWindow", u"MVPtitle", None))

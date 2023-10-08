@@ -139,6 +139,8 @@ class WindowClass(QMainWindow, form_class):
         
         self.filepos.setText(self.filename)
         
+        self.setWindowTitle("FVA application v1.0")
+        
         self.record.clicked.connect(self.f_record)
         self.play.clicked.connect(self.f_play)
         self.pause.clicked.connect(self.f_pause)
@@ -191,7 +193,7 @@ class WindowClass(QMainWindow, form_class):
         self.mvppixmap = QPixmap(cd+'\\MVPtitle.png')
         self.MVPtitle.setPixmap(self.mvppixmap)
         self.MVPtitle.setScaledContents(True)
-        self.MVPtitle.setGeometry(QRect(263,907,380,40))
+        self.MVPtitle.setGeometry(QRect(190,908,510,53))
         
         self.ViewLabel()
         self.initMVP()
@@ -252,7 +254,7 @@ class WindowClass(QMainWindow, form_class):
                 self.MAaxes[i][nF2-q-1].yaxis.set_visible(False)
                 self.MAaxes[i][nF2-q-1].axis('off')
                 if q<nF2:
-                    #if board[i][q].sum()!=0 and i + nF2 - q - 1 < 15:
+                    if board[i][q].sum()!=0 and i + nF2 - q - 1 < 15:
                         self.MAaxes[i][nF2-q-1].pie(np.array(board[i][q]),colors=colors,radius=1.3)
         if draw:self.MAcanvas.draw() 
     def ViewMVP(self):
@@ -265,33 +267,50 @@ class WindowClass(QMainWindow, form_class):
         self.MOaxes = self.MOfig.subplots(1,1)
         
         res, Findex, fp, fm = get_Findex(self.FM)
-        self.FMFP.setPlainText(f'Pitch : {round(fp,1)}Hz\nFormants : {", ".join(str(round(e,1))+"Hz" for e in fm[:4])}')
+        self.FMFP.clear()
+        self.FMFP.append(' ')
+        self.FMFP.append(f'Pitch : {round(fp,1)}Hz')
+        self.FMFP.append(f'Formants : {", ".join(str(round(e,1))+"Hz" for e in fm[:4])}')
         sorted(Findex)
         
         self.MAaxes[Findex[0]][nF2-Findex[1]-1].add_patch(patches.Rectangle(
             (-1.25, -1.25),                   # (x, y)
             2.5, 2.5,                     # width, height
-            edgecolor = 'deeppink',
+            edgecolor = 'black',
             facecolor = 'white',
             fill=False,
-            linewidth=2.3,
+            linewidth=5.,
         ))
         
         self.MAcanvas.draw()
         
         self.MVPresult.clear()
-        self.MVPresult.append('인공지능이 분석한 결과,\n이 소리는\n')
+        self.MVPresult.setAlignment(Qt.AlignCenter)
+        self.MVPresult.append(' ')
+        self.MVPresult.append('인공지능이 분석한 결과, 이 소리는')
+        _size = len(res)
+        print(res)
         for i,x in enumerate(res):
-            self.MVPresult.append(f'{x[1]} : {x[0]}%')
-        self.MVPresult.append('\n인 소리입니다.')
+            if x[0] < 5.:
+                _size=i
+                break
+        for i,x in enumerate(res[:_size]):
+            if i==_size-1: self.MVPresult.append(f'{x[1]} 모음과 {x[0]}%')
+            else: self.MVPresult.append(f'{x[1]} 모음과 {x[0]}%, ')
+        self.MVPresult.append('가까운 소리입니다.')
         
         pairs = [[board[Findex[0]][Findex[1]][i],x,colors[i]] for i,x in enumerate(vowels.keys())]
-        rpairs = []
-        for x in pairs:
-            if x[0] > 0.:
-                rpairs.append(x)
+        for i,x in enumerate(pairs):
+            if x[0]<5.:
+                pairs[i][1]=""
         
-        self.MOaxes.pie(np.array(rpairs).transpose((1,0))[0],colors=np.array(rpairs).transpose((1,0))[2],labels=np.array(rpairs).transpose((1,0))[1],autopct='%.1f%%',textprops={'fontsize': 22},radius=1.5)
+        def func(pct):
+            return "" if pct<5. else f"{pct:.1f}%"
+        
+        pairs.reverse()
+        
+        self.MOaxes.pie(np.array(pairs).transpose((1,0))[0],colors=np.array(pairs).transpose((1,0))[2],labels=np.array(pairs).transpose((1,0))[1],autopct=lambda pct: func(pct),
+                        textprops={'fontsize': 22},radius=1.2, counterclock=False, shadow=True)
         
         self.MOcanvas.draw()
     def f_ViewResult(self):
