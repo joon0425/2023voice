@@ -315,6 +315,26 @@ li.checked::marker { content: &quot;\2612&quot;; }
      </font>
     </property>
    </widget>
+   <widget class="QLabel" name="loadingLabel">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>240</y>
+      <width>311</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>나눔스퀘어_ac ExtraBold</family>
+      <pointsize>20</pointsize>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
    <zorder>frame</zorder>
    <zorder>frame_2</zorder>
    <zorder>tabWidget</zorder>
@@ -329,6 +349,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
    <zorder>F1</zorder>
    <zorder>MVPtitle</zorder>
    <zorder>MVPresult</zorder>
+   <zorder>loadingLabel</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

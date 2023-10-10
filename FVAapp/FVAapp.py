@@ -20,6 +20,7 @@ from DB.DBmanager import *
 import matplotlib.patches as patches
 import matplotlib
 import matlab
+import threading
 
 
 pitchcondition = 0 # 0: upper than pitch, 1: +- 70Hz
@@ -115,6 +116,8 @@ class WindowClass(QMainWindow, form_class):
     playlist    =   QMediaPlaylist()
     isplaying   =   False
     playpaused  =   False
+    Loading     =   False
+    Loader      =   None
     FM          =   FVAmanager(filename)
     
     lpcfig      =   None
@@ -197,7 +200,25 @@ class WindowClass(QMainWindow, form_class):
         
         self.ViewLabel()
         self.initMVP()
+    def Loading(self):
+        i     = -1
+        nDot  = 3
+        while(self.loading):
+            i = i%nDot+1
+            self.log.setText(f'분석 중 {"".join(["."for q in range(i)])}')
+            print(f'분석 중 {"".join(["."for q in range(i)])}')
+            time.sleep(1)
+    
+    def StartLoading(self):
+        self.loading = True
+        self.loader  = threading.Thread(target=self.Loading)
+        self.loader.start()
         
+    def StopLoading(self):
+        self.loading = False
+        self.loader.join()
+        self.log.clear()
+    
     def ViewLpc(self):
         if self.lpcaxes is not None:
             self.lpcaxes.cla()
@@ -314,11 +335,13 @@ class WindowClass(QMainWindow, form_class):
         
         self.MOcanvas.draw()
     def f_ViewResult(self):
+        self.StartLoading()
         self.log.setText("f_ViewResult() : ViewResult clicked")
         self.FM = FVAmanager(self.filename)
         self.ViewLpc()
         self.ViewMVP()
         self.ViewLabel()
+        self.StopLoading()
     def f_record(self):
         self.log.setText("f_record() : record clicked")
         if self.isplaying or rc.recording:

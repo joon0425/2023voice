@@ -13,7 +13,16 @@ def verify_f0(FILE):
     return result
 
 def test_sweep(FILE):
-    crepe.process_file(FILE,step_size=100)
+    """
+    models = {
+    'tiny': None,
+    'small': None,
+    'medium': None,
+    'large': None,
+    'full': None
+}
+    """
+    crepe.process_file(FILE,step_size=100,model_capacity='medium')
     return verify_f0(FILE)
 
 def test_sweep_cli(FILE):

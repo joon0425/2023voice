@@ -119,6 +119,10 @@ class Ui_MainWindow(object):
         self.MVPresult.setObjectName(u"MVPresult")
         self.MVPresult.setGeometry(QRect(950, 380, 921, 161))
         self.MVPresult.setFont(font)
+        self.loadingLabel = QLabel(self.centralwidget)
+        self.loadingLabel.setObjectName(u"loadingLabel")
+        self.loadingLabel.setGeometry(QRect(50, 240, 311, 51))
+        self.loadingLabel.setFont(font)
         MainWindow.setCentralWidget(self.centralwidget)
         self.frame.raise_()
         self.frame_2.raise_()
@@ -134,6 +138,7 @@ class Ui_MainWindow(object):
         self.F1.raise_()
         self.MVPtitle.raise_()
         self.MVPresult.raise_()
+        self.loadingLabel.raise_()
         self.menubar = QMenuBar(MainWindow)
         self.menubar.setObjectName(u"menubar")
         self.menubar.setGeometry(QRect(0, 0, 2205, 22))
@@ -173,5 +178,6 @@ class Ui_MainWindow(object):
         self.F2.setText(QCoreApplication.translate("MainWindow", u"F2", None))
         self.F1.setText(QCoreApplication.translate("MainWindow", u"F1", None))
         self.MVPtitle.setText(QCoreApplication.translate("MainWindow", u"MVPtitle", None))
+        self.loadingLabel.setText("")
     # retranslateUi
 
